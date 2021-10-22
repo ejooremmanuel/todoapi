@@ -8,6 +8,7 @@ const getAllUserTodos = require("../../controllers/user/getAllUserTasks.controll
 const editSingleTask = require("../../controllers/user/editTask.controller");
 const deleteTask = require("../../controllers/user/deleteTask.controller");
 const postEditedTask = require("../../controllers/user/postEditedTask.controller");
+const getConsent = require("../../controllers/user/createevent");
 
 //Endpoint for creating a todo list task and upload attachment
 router.post("/createtask", JWTauth, upload.single("file"), createTodoTask);
@@ -23,5 +24,8 @@ router.post("/posteditedtask/:taskid", JWTauth, postEditedTask);
 
 //Endpoint || Route for deleting a task
 router.get("/delete/:taskid", JWTauth, deleteTask);
+
+//Endpoint || Route for getting the Google consent page
+router.get("/event", JWTauth, getConsent);
 
 module.exports = router;
