@@ -118,3 +118,112 @@
                    }
                   ]
                 }
+
+> ### API endpoint For Deleting a User Todo Task
+
+> [](https://todoapibyejoor.herokuapp.com/api/v1/user/delete/:taskid)
+
+> A successful request will return a HTTP 201 status code
+
+> > > #### Example
+
+> #### Request
+
+       curl --location --request GET 'https://todoapibyejoor.herokuapp.com/api/v1/user/delete/61744642b8e2462ddb6b6597' \
+        --header 'access-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmaW5kVXNlciI6eyJfaWQiOiI2MTc0Mzc0ZDA2YzIxODFkZjQ2OTUzYjEiLCJlbWFpbCI6ImVqb29yQGdtYWlsLmNvbSIsInBhc3N3b3JkIjoiJDJhJDEwJFVYemxSMm50RDJMY05rT09qOFFHNE9SYmIyeHEvNE00bWNCSC5yYTBXbmdEQVJsU3NtUFJLIiwidGFzayI6W10sImNyZWF0ZWRBdCI6IjIwMjEtMTAtMjNUMTY6MjQ6NDUuMDcxWiIsInVwZGF0ZWRBdCI6IjIwMjEtMTAtMjNUMTY6MjQ6NDUuMDcxWiIsIl9fdiI6MH0sImlhdCI6MTYzNTAwOTMwNiwiZXhwIjoxNjY2NTQ1MzA2fQ.kYy4vqBaOl9k3pW-81Zc8jw4cfZ9pcte9UwlgCiPkO4' \
+        --data-raw ''
+
+> #### Response
+
+               {
+          "status": "success",
+          "message": "task deleted!"
+            }
+
+> ### API endpoint For Editing a User Todo Task
+
+> [](https://todoapibyejoor.herokuapp.com/api/v1/user/edit/:taskid)
+
+> A successful request will return a HTTP 201 status code
+
+> > > #### Example
+
+> #### Request
+
+      curl --location --request GET 'https://todoapibyejoor.herokuapp.com/api/v1/user/edit/617449e3c9fbe54fe4ec82ec' \
+        --header 'access-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmaW5kVXNlciI6eyJfaWQiOiI2MTc0Mzc0ZDA2YzIxODFkZjQ2OTUzYjEiLCJlbWFpbCI6ImVqb29yQGdtYWlsLmNvbSIsInBhc3N3b3JkIjoiJDJhJDEwJFVYemxSMm50RDJMY05rT09qOFFHNE9SYmIyeHEvNE00bWNCSC5yYTBXbmdEQVJsU3NtUFJLIiwidGFzayI6W10sImNyZWF0ZWRBdCI6IjIwMjEtMTAtMjNUMTY6MjQ6NDUuMDcxWiIsInVwZGF0ZWRBdCI6IjIwMjEtMTAtMjNUMTY6MjQ6NDUuMDcxWiIsIl9fdiI6MH0sImlhdCI6MTYzNTAwOTMwNiwiZXhwIjoxNjY2NTQ1MzA2fQ.kYy4vqBaOl9k3pW-81Zc8jw4cfZ9pcte9UwlgCiPkO4' \
+        --data-raw ''
+
+> #### Response
+
+            {
+           "status": "success",
+          "message": "task found!",
+      "task": {
+        "_id": "617449e3c9fbe54fe4ec82ec",
+        "title": "title",
+        "description": "description",
+        "files": [],
+        "user": [
+            "6174374d06c2181df46953b1"
+        ],
+        "createdAt": "2021-10-23T17:44:03.332Z",
+        "updatedAt": "2021-10-23T17:44:03.332Z",
+        "__v": 0
+           }
+        }
+
+> ### API endpoint For Posting an Edited User Todo Task
+
+> [](https://todoapibyejoor.herokuapp.com/api/v1/user/posteditedtask/:taskid)
+
+> A successful request will return a HTTP 201 status code
+
+> > > #### Example
+
+> #### Request
+
+      curl --location --request POST 'https://todoapibyejoor.herokuapp.com/api/v1/user/posteditedtask/617449e3c9fbe54fe4ec82ec' \
+        --header 'access-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmaW5kVXNlciI6eyJfaWQiOiI2MTc0Mzc0ZDA2YzIxODFkZjQ2OTUzYjEiLCJlbWFpbCI6ImVqb29yQGdtYWlsLmNvbSIsInBhc3N3b3JkIjoiJDJhJDEwJFVYemxSMm50RDJMY05rT09qOFFHNE9SYmIyeHEvNE00bWNCSC5yYTBXbmdEQVJsU3NtUFJLIiwidGFzayI6W10sImNyZWF0ZWRBdCI6IjIwMjEtMTAtMjNUMTY6MjQ6NDUuMDcxWiIsInVwZGF0ZWRBdCI6IjIwMjEtMTAtMjNUMTY6MjQ6NDUuMDcxWiIsIl9fdiI6MH0sImlhdCI6MTYzNTAwOTMwNiwiZXhwIjoxNjY2NTQ1MzA2fQ.kYy4vqBaOl9k3pW-81Zc8jw4cfZ9pcte9UwlgCiPkO4' \
+        --header 'Content-Type: application/json' \
+        --data-raw '{
+        "title":"title is edited",
+         "description":"description is edited"
+        }'
+
+> #### Response
+
+            {
+    "message": "task updated",
+    "result": {
+        "_id": "617449e3c9fbe54fe4ec82ec",
+        "title": "title",
+        "description": "description",
+        "files": [],
+        "user": [
+            "6174374d06c2181df46953b1"
+        ],
+        "createdAt": "2021-10-23T17:44:03.332Z",
+        "updatedAt": "2021-10-23T17:44:03.332Z",
+        "__v": 0
+         }
+
+        }
+
+> ### API endpoint For Creating a Google Event
+
+> [](https://todoapibyejoor.herokuapp.com/api/v1/user/event)
+
+> A successful request will return a HTTP 201 status code
+
+> > > #### Example
+
+> #### Request
+
+      curl --location --request GET 'https://todoapibyejoor.herokuapp.com/api/v1/user/event' \
+        --header 'access-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmaW5kVXNlciI6eyJfaWQiOiI2MTc0Mzc0ZDA2YzIxODFkZjQ2OTUzYjEiLCJlbWFpbCI6ImVqb29yQGdtYWlsLmNvbSIsInBhc3N3b3JkIjoiJDJhJDEwJFVYemxSMm50RDJMY05rT09qOFFHNE9SYmIyeHEvNE00bWNCSC5yYTBXbmdEQVJsU3NtUFJLIiwidGFzayI6W10sImNyZWF0ZWRBdCI6IjIwMjEtMTAtMjNUMTY6MjQ6NDUuMDcxWiIsInVwZGF0ZWRBdCI6IjIwMjEtMTAtMjNUMTY6MjQ6NDUuMDcxWiIsIl9fdiI6MH0sImlhdCI6MTYzNTAwOTMwNiwiZXhwIjoxNjY2NTQ1MzA2fQ.kYy4vqBaOl9k3pW-81Zc8jw4cfZ9pcte9UwlgCiPkO4' \
+        --data-raw ''
+
+> #### Response
+
+A Google consent page
