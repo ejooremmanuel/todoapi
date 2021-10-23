@@ -11,7 +11,7 @@
 
 > A successful request will return a HTTP 201 status code
 
-## Example
+> > > #### Example
 
 > #### Request
 
@@ -34,7 +34,7 @@
 
 > A successful request will return a HTTP 201 status code
 
-## Example
+> > > #### Example
 
 > #### Request
 
@@ -60,3 +60,61 @@
         "\_\_v": 0
         }
         }
+
+> ### API endpoint For Creating a Todo Task
+
+> [](https://todoapibyejoor.herokuapp.com/api/v1/user/createtask)
+
+> A successful request will return a HTTP 201 status code
+
+> > > #### Example
+
+> #### Request
+
+        curl --location --request POST 'https://todoapibyejoor.herokuapp.com/api/v1/user/createtask' \
+        --header 'access-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmaW5kVXNlciI6eyJfaWQiOiI2MTc0Mzc0ZDA2YzIxODFkZjQ2OTUzYjEiLCJlbWFpbCI6ImVqb29yQGdtYWlsLmNvbSIsInBhc3N3b3JkIjoiJDJhJDEwJFVYemxSMm50RDJMY05rT09qOFFHNE9SYmIyeHEvNE00bWNCSC5yYTBXbmdEQVJsU3NtUFJLIiwidGFzayI6W10sImNyZWF0ZWRBdCI6IjIwMjEtMTAtMjNUMTY6MjQ6NDUuMDcxWiIsInVwZGF0ZWRBdCI6IjIwMjEtMTAtMjNUMTY6MjQ6NDUuMDcxWiIsIl9fdiI6MH0sImlhdCI6MTYzNTAwOTMwNiwiZXhwIjoxNjY2NTQ1MzA2fQ.kYy4vqBaOl9k3pW-81Zc8jw4cfZ9pcte9UwlgCiPkO4' \
+        --header 'Content-Type: application/json' \
+        --data-raw '{
+        "title":"Meeting",
+           "description":"This is a meeting"
+            }'
+
+> #### Response
+
+        {
+         "message": "todo task created."
+        }
+
+> ### API endpoint For viewing all User Todo Task
+
+> [](https://todoapibyejoor.herokuapp.com/api/v1/user/task)
+
+> A successful request will return a HTTP 201 status code
+
+> > > #### Example
+
+> #### Request
+
+        curl --location --request GET 'https://todoapibyejoor.herokuapp.com/api/v1/user/task' \
+        --header 'access-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmaW5kVXNlciI6eyJfaWQiOiI2MTc0Mzc0ZDA2YzIxODFkZjQ2OTUzYjEiLCJlbWFpbCI6ImVqb29yQGdtYWlsLmNvbSIsInBhc3N3b3JkIjoiJDJhJDEwJFVYemxSMm50RDJMY05rT09qOFFHNE9SYmIyeHEvNE00bWNCSC5yYTBXbmdEQVJsU3NtUFJLIiwidGFzayI6W10sImNyZWF0ZWRBdCI6IjIwMjEtMTAtMjNUMTY6MjQ6NDUuMDcxWiIsInVwZGF0ZWRBdCI6IjIwMjEtMTAtMjNUMTY6MjQ6NDUuMDcxWiIsIl9fdiI6MH0sImlhdCI6MTYzNTAwOTMwNiwiZXhwIjoxNjY2NTQ1MzA2fQ.kYy4vqBaOl9k3pW-81Zc8jw4cfZ9pcte9UwlgCiPkO4' \
+        --data-raw ''
+
+> #### Response
+
+               {
+           "message": "todo tasks found",
+           "task": [
+          {
+            "_id": "61744642b8e2462ddb6b6597",
+            "title": "Meeting",
+            "description": "This is a meeting",
+            "files": [],
+            "user": [
+                "6174374d06c2181df46953b1"
+            ],
+            "createdAt": "2021-10-23T17:28:34.502Z",
+            "updatedAt": "2021-10-23T17:28:34.502Z",
+            "__v": 0
+                   }
+                  ]
+                }
