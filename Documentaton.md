@@ -227,3 +227,8 @@
 > #### Response
 
 A Google consent page
+
+        sample login details to test google event
+
+        email address : testtodoapp2021@gmail.com
+        password: test@2021
