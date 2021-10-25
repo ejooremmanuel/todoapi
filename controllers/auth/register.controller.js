@@ -7,30 +7,44 @@ const createUser = async (req, res) => {
   try {
     const { email, password } = req.body;
     if (!email || !password) {
-      return res.status(400).json({ message: "please fill all fields" });
+      return res
+        .status(400)
+        .json({ success: false, message: "please fill all fields" });
     }
 
     if (password.length < 6) {
-      return res
-        .status(400)
-        .json({ message: "password must be at least 6 characters" });
+      return res.status(400).json({
+        success: false,
+        message: "password must be at least 6 characters",
+      });
     }
 
     const checkEmail = await User.findOne({ email });
 
     if (checkEmail) {
-      return res.status(400).json({ message: "user already registered!" });
+      return res
+        .status(400)
+        .json({ success: false, message: "user already registered!" });
     }
     const hashedPassword = bcryptjs.hashSync(password, 10);
+    if (!hashedPassword) {
+      return res
+        .status(500)
+        .json({ success: false, message: "an error occurred." });
+    }
     const newUser = new User({
       email,
       password: hashedPassword,
     });
     if (!newUser) {
-      return res.status(500).json({ message: "an error occurred." });
+      return res
+        .status(500)
+        .json({ success: false, message: "an error occurred." });
     }
     await newUser.save();
-    return res.status(201).json({ message: "user created successfully." });
+    return res
+      .status(201)
+      .json({ success: true, message: "user created successfully." });
   } catch {
     ({ message }) => {
       return res.status(500).json({ message });
