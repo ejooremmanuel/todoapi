@@ -3,6 +3,7 @@ const { Schema, model } = mongoose;
 
 const userSchema = new Schema(
   {
+    fullname: { type: String },
     email: { type: String },
     password: { type: String },
     task: [{ type: mongoose.Types.ObjectId, ref: "task" }],

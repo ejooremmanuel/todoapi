@@ -5,8 +5,8 @@ const jwt = require("jsonwebtoken");
 // Controller for creating a new user
 const createUser = async (req, res) => {
   try {
-    const { email, password } = req.body;
-    if (!email || !password) {
+    const { email, password, fullname } = req.body;
+    if (!email || !password || !fullname) {
       return res
         .status(400)
         .json({ success: false, message: "please fill all fields" });
@@ -34,6 +34,7 @@ const createUser = async (req, res) => {
     }
     const newUser = new User({
       email,
+      fullname,
       password: hashedPassword,
     });
     if (!newUser) {
@@ -44,7 +45,7 @@ const createUser = async (req, res) => {
     await newUser.save();
     return res
       .status(201)
-      .json({ success: true, message: "user created successfully." });
+      .json({ success: true, message: "Registration successfull." });
   } catch {
     ({ message }) => {
       return res.status(500).json({ message });
