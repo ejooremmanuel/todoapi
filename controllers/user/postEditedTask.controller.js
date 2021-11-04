@@ -57,10 +57,8 @@ postEditTask = async (req, res) => {
         }
       );
     }
-  } catch {
-    ({ message }) => {
-      return res.status(500).json({ message });
-    };
+  } catch ({ message }) {
+    return res.status(500).json({ message });
   }
 };
 

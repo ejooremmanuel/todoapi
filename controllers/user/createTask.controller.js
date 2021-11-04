@@ -7,36 +7,46 @@ const cloudinarySetUp = require("../../config/cloudinarysetup");
 
 //Controller for creating tasks
 const createTask = async (req, res) => {
-  if (!req.user)
-    return res.status(401).json({ message: "please login to continue" });
-  const { title, description } = req.body;
-  if (!title || !description) {
-    return res.status(401).json({ message: "fill all fields" });
-  }
+  try {
+    if (!req.user)
+      return res.status(401).json({ message: "please login to continue" });
+    const { title, description } = req.body;
+    if (!title || !description) {
+      return res
+        .status(401)
+        .json({ success: false, message: "fill all fields" });
+    }
 
-  if (req.file) {
+    if (req.file) {
+      const newTask = await new Task({
+        title,
+        description,
+        files: req.file.filename,
+        user: req.user._id,
+      });
+      await newTask.save();
+      userTask = await User.findById(req.user._id);
+      userTask.task.unshift(newTask._id);
+      await userTask.save();
+      return res
+        .status(201)
+        .json({ success: true, message: "todo task created." });
+    }
     const newTask = await new Task({
       title,
       description,
-      files: req.file.filename,
       user: req.user._id,
     });
     await newTask.save();
     userTask = await User.findById(req.user._id);
     userTask.task.unshift(newTask._id);
     await userTask.save();
-    return res.status(201).json({ message: "todo task created." });
+    return res
+      .status(201)
+      .json({ success: true, message: "todo task created." });
+  } catch ({ message }) {
+    return res.status(500).json({ message });
   }
-  const newTask = await new Task({
-    title,
-    description,
-    user: req.user._id,
-  });
-  await newTask.save();
-  userTask = await User.findById(req.user._id);
-  userTask.task.unshift(newTask._id);
-  await userTask.save();
-  return res.status(201).json({ message: "todo task created." });
 };
 
 module.exports = createTask;
