@@ -8,8 +8,6 @@ const cloudinarySetUp = require("../../config/cloudinarysetup");
 //Controller for creating tasks
 const createTask = async (req, res) => {
   try {
-    if (!req.user)
-      return res.status(401).json({ message: "please login to continue" });
     const { title, description } = req.body;
     if (!title || !description) {
       return res
