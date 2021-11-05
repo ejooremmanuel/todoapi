@@ -37,7 +37,7 @@ const createTask = async (req, res) => {
     });
     await newTask.save();
     userTask = await User.findById(req.user._id);
-    userTask.task.push(newTask._id);
+    userTask.task.unshift(newTask._id);
     await userTask.save();
     return res
       .status(201)
