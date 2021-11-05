@@ -28,7 +28,7 @@ const createTask = async (req, res) => {
       await userTask.save();
       return res
         .status(201)
-        .json({ success: true, message: "todo task created.", todo: newTask });
+        .json({ success: true, message: "todo task created." });
     }
     const newTask = await new Task({
       title,
@@ -41,7 +41,7 @@ const createTask = async (req, res) => {
     await userTask.save();
     return res
       .status(201)
-      .json({ success: true, message: "todo task created." });
+      .json({ success: true, message: "todo task created.", todo: newTask });
   } catch ({ message }) {
     return res.status(500).json({ message });
   }
