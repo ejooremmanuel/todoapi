@@ -4,10 +4,10 @@ const Task = require("../../models/Task");
 const deleteTask = async (req, res) => {
   try {
     const { taskid } = req.params;
-    await Task.findByIdAndDelete(taskid).then(() => {
+    await Task.findByIdAndDelete(taskid).then((doc) => {
       return res
         .status(201)
-        .json({ status: "success", message: "task deleted!" });
+        .json({ status: "success", message: "task deleted!", data: doc });
     });
   } catch {
     ({ message }) => {
