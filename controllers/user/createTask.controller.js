@@ -28,7 +28,7 @@ const createTask = async (req, res) => {
       await userTask.save();
       return res
         .status(201)
-        .json({ success: true, message: "todo task created." });
+        .json({ success: true, message: "todo task created.", todo: newTask });
     }
     const newTask = await new Task({
       title,
