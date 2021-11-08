@@ -10,7 +10,7 @@ const ProfilePhotoUpload = (req, res) => {
 
     const checkId = User.findById(userid);
     if (!checkId) {
-      return res.status(404).json({ message: "user not found!" });
+      return res.status(401).json({ message: "user not found!" });
     }
 
     await cloudinarySetUp();

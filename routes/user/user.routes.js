@@ -20,7 +20,7 @@ router.get("/task", JWTauth, getAllUserTodos);
 // Endpoint for editing a single task
 router.get("/edit/:taskid", JWTauth, upload.single("file"), editSingleTask);
 // Endpoint for editing a single task
-router.put("/edit/:taskid", JWTauth, upload.single("file"), editSingleTask);
+router.put("/task/:taskid", JWTauth, upload.single("file"), editSingleTask);
 
 // Endpoint for uploading a profile picture
 router.put("/update/:userid", JWTauth, upload.single("upload"), photoUpload);
