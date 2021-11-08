@@ -11,6 +11,10 @@ const taskSchema = new Schema(
     description: {
       type: String,
     },
+    completed: {
+      type: Boolean,
+      default: false,
+    },
     files: {
       type: [],
     },

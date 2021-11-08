@@ -6,7 +6,8 @@ const editTask = async (req, res) => {
     if (!req.user)
       return res.status(401).json({ status: "401", message: "Please login" });
     const { taskid } = req.params;
-    Task.findById(taskid, (err, task) => {
+    const { title, description, completed } = req.body;
+    Task.findByIdAndUpdate(taskid, (err, task) => {
       if (!err) {
         return res
           .status(201)
