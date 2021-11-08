@@ -22,7 +22,7 @@ const ProfilePhotoUpload = (req, res) => {
     }
     User.findByIdAndUpdate(
       userid,
-      [{ $set: { avatar: uploadedFile } }],
+      [{ $set: { avatar: uploadedFile.secure_url } }],
       (err, result) => {
         if (!err) {
           return res.status(201).json({ message: "profile updated!", result });
