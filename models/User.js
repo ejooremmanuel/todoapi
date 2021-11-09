@@ -1,13 +1,14 @@
 const mongoose = require("mongoose");
 const { Schema, model } = mongoose;
-
+let toonavatar = require("cartoon-avatar");
+let url = toonavatar.generate_avatar();
 const userSchema = new Schema(
   {
     fullname: { type: String },
     email: { type: String },
     password: { type: String },
-    avatarSmall: { type: String, default: fullname.subString(0, 2) },
-    avatar: { type: String, default: fullname.subString(0, 2) },
+    avatarSmall: { type: String, default: url },
+    avatar: { type: String, default: url },
     admin: { type: Boolean, default: false },
     task: [{ type: mongoose.Types.ObjectId, ref: "task" }],
   },
