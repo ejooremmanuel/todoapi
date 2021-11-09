@@ -1,5 +1,5 @@
 const Task = require("../../models/Task");
-const { User } = require("../../models/User");
+const User = require("../../models/User");
 
 //Controller for retrieving all tasks
 const getTasks = async (req, res) => {

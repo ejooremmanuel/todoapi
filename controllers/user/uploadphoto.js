@@ -1,4 +1,4 @@
-const { User } = require("../../models/User");
+const User = require("../../models/User");
 
 //Cloudinary cloudinarySetup
 const cloudinary = require("cloudinary").v2;
@@ -8,31 +8,31 @@ const ProfilePhotoUpload = async (req, res) => {
   try {
     const { userid } = req.params;
 
-    const checkId = User.findById(userid);
-    if (!checkId) {
-      return res.status(401).json({ message: "user not found!" });
-    }
+    if (!req.file)
+      return res.status(400).json({ msg: "Please upload an image" });
+    // if(!req.file.mimetype == 'image/*') return res.status(400).json({msg: 'Only Images are allowed'});
+
+    let loggedInUser = await User.findById(userid);
+    if (!loggedInUser)
+      return res.status(404).json({ msg: "Please login to continue" });
 
     await cloudinarySetUp();
-    const uploadedFile = await cloudinary.uploader.upload(req.file.path, {
-      resource_type: "auto",
+
+    const uploadedImage = await cloudinary.uploader.upload(req.file.path, {
+      eager: [
+        { height: 100, width: 100, crop: "fill" },
+        { height: 250, width: 250, crop: "fill" },
+      ],
     });
-    if (!uploadedFile) {
-      return res.status(500).json({ message: "Image upload failed!" });
-    }
-    User.findByIdAndUpdate(
-      userid,
-      [{ $set: { avatar: uploadedFile.secure_url } }],
-      (err, result) => {
-        if (!err) {
-          return res.status(201).json({ message: "profile updated!", result });
-        } else {
-          return res
-            .status(500)
-            .json({ message: "image upload failed", error: err.message });
-        }
-      }
-    );
+
+    if (!uploadedImage)
+      return res.status(500).json({ msg: "An error occurred while uploading" });
+
+    loggedInUser.avatarSmall = uploadedImage.eager[0].secure_url;
+    loggedInUser.avatar = uploadedImage.eager[1].secure_url;
+    await loggedInUser.save();
+
+    return res.status(201).json({ msg: "Profile image updated successfully" });
   } catch (err) {
     console.log("error", err.message);
   }

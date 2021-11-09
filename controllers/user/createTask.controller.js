@@ -1,5 +1,5 @@
 const Task = require("../../models/Task");
-const { User } = require("../../models/User");
+const User = require("../../models/User");
 
 //Cloudinary cloudinarySetup
 const cloudinary = require("cloudinary").v2;

@@ -6,12 +6,14 @@ const userSchema = new Schema(
     fullname: { type: String },
     email: { type: String },
     password: { type: String },
+    avatarSmall: { type: String },
     avatar: { type: String },
+    admin: { type: Boolean, default: false },
     task: [{ type: mongoose.Types.ObjectId, ref: "task" }],
   },
   { timestamps: true }
 );
 
-module.exports = {
-  User: model("user", userSchema),
-};
+const User = model("user", userSchema);
+
+module.exports = User;
