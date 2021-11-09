@@ -9,8 +9,7 @@ const ProfilePhotoUpload = async (req, res) => {
     const { userid } = req.params;
     console.log(req.file, userid);
 
-    let loggedInUser = User.findOne({ userid });
-    console.log(loggedInUser);
+    let loggedInUser = await User.findOne({ userid });
     if (!loggedInUser)
       return res.status(400).json({ msg: "Please login to continue" });
 
@@ -28,9 +27,14 @@ const ProfilePhotoUpload = async (req, res) => {
 
     loggedInUser.avatarSmall = uploadedImage.eager[0].secure_url;
     loggedInUser.avatar = uploadedImage.eager[1].secure_url;
+
     await loggedInUser.save();
 
-    return res.status(201).json({ msg: "Profile image updated successfully" });
+    return res.status(201).json({
+      msg: "Profile image updated successfully",
+      user: loggedInUser,
+      img: uploadedImage.eager[1].secure_url,
+    });
   } catch (err) {
     console.log("error", err.message);
   }
