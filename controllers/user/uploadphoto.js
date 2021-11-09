@@ -17,8 +17,17 @@ const ProfilePhotoUpload = async (req, res) => {
       ],
     });
     let founduser = await User.findOne({ userid });
+    if (!founduser) {
+      return res.status(400).json({
+        message: "User not found",
+      });
+    }
     await founduser.updateOne({
       $set: { avatarSmall: uploadedImage.eager[0].secure_url },
+    });
+    return res.status(200).json({
+      message: "Profile photo uploaded successfully",
+      founduser,
     });
   } catch (err) {
     console.log("error", err.message);
