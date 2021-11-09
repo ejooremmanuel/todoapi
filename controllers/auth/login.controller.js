@@ -36,6 +36,7 @@ const loginUser = async (req, res, next) => {
       user: {
         ...findUser._doc,
         password: "",
+        avatarSmall,
       },
     });
   } catch ({ message }) {
