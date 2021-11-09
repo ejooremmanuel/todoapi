@@ -4,7 +4,7 @@ const { User } = require("../../models/User");
 const cloudinary = require("cloudinary").v2;
 const cloudinarySetUp = require("../../config/cloudinarysetup");
 
-const ProfilePhotoUpload = (req, res) => {
+const ProfilePhotoUpload = async (req, res) => {
   try {
     const { userid } = req.params;
 
