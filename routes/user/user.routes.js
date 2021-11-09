@@ -35,5 +35,7 @@ router.delete("/delete/:taskid", JWTauth, deleteTask);
 
 //Endpoint || Route for getting the Google consent page
 router.get("/event", JWTauth, getConsent);
+//Endpoint || Route for post the Google consent page
+router.post("/event", JWTauth, getConsent);
 
 module.exports = router;
