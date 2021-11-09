@@ -9,7 +9,8 @@ const ProfilePhotoUpload = async (req, res) => {
     const { userid } = req.params;
     console.log(req.file, userid);
 
-    let loggedInUser = await User.findById(userid);
+    let loggedInUser = User.findOne({ userid });
+    console.log(loggedInUser);
     if (!loggedInUser)
       return res.status(400).json({ msg: "Please login to continue" });
 
