@@ -6,7 +6,6 @@ const querystring = require("querystring");
 
 const CalendarApi = async (req, res) => {
   try {
-    console.log(req.params);
     const oauth2Client = new google.auth.OAuth2(
       process.env.client_id,
       process.env.client_secret,
