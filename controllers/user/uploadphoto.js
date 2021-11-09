@@ -7,14 +7,14 @@ const cloudinarySetUp = require("../../config/cloudinarysetup");
 const ProfilePhotoUpload = async (req, res) => {
   try {
     const { userid } = req.params;
-
+    console.log(req.file, userid);
     if (!req.file)
       return res.status(400).json({ msg: "Please upload an image" });
     // if(!req.file.mimetype == 'image/*') return res.status(400).json({msg: 'Only Images are allowed'});
 
     let loggedInUser = await User.findById(userid);
     if (!loggedInUser)
-      return res.status(404).json({ msg: "Please login to continue" });
+      return res.status(400).json({ msg: "Please login to continue" });
 
     await cloudinarySetUp();
 
