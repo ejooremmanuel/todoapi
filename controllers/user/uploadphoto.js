@@ -7,7 +7,6 @@ const cloudinarySetUp = require("../../config/cloudinarysetup");
 const ProfilePhotoUpload = async (req, res) => {
   try {
     const { userid } = req.params;
-    console.log(req.file, userid);
 
     let loggedInUser = await User.findOne({ userid });
     if (!loggedInUser)
