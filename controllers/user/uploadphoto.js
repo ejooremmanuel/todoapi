@@ -32,8 +32,8 @@ const ProfilePhotoUpload = async (req, res) => {
 
     return res.status(201).json({
       msg: "Profile image updated successfully",
-      user: loggedInUser,
-      img: uploadedImage.eager[1].secure_url,
+      userdata: loggedInUser,
+      img: uploadedImage.eager[0].secure_url,
     });
   } catch (err) {
     console.log("error", err.message);
