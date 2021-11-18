@@ -4,7 +4,8 @@ const User = require("../../models/User");
 //Controller for retrieving all tasks
 const getTasks = async (req, res) => {
   if (!req.user) {
-    return res.status(401).json({ message: "please login!" });
+    res.status(401).json({ message: "please login!" });
+    return res.redirect("/");
   }
   const getAllTasks = User.findById(req.user._id, (err, docs) => {
     if (!err) {
